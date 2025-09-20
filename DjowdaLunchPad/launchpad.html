@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Creator Launchpad</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+    <header>
+        <div class="header-left">
+            <div class="logo" id="logoContainer" title="Click to change logo, right-click to reset">
+                <div id="logoContent">🚀</div>
+                <span>Creator Launchpad</span>
+            </div>
+        </div>
+
+        <div class="search-container">
+            <input
+                    type="text"
+                    class="search-input"
+                    id="searchInput"
+                    placeholder="Search links or press '/' to focus..."
+                    autocomplete="off"
+            />
+            <span class="search-icon">🔍</span>
+        </div>
+
+        <div class="datetime">
+            <div class="time" id="clock">00:00</div>
+            <div id="date">Monday, January 1</div>
+        </div>
+    </header>
+
+    <div class="controls">
+        <button class="btn" id="addLinkBtn">
+            <span>➕</span>
+            <span>Add Link</span>
+        </button>
+        <button class="btn" id="analyticsBtn">
+            <span>📊</span>
+            <span>Analytics</span>
+        </button>
+        <button class="btn" id="settingsBtn">
+            <span>⚙️</span>
+            <span>Settings</span>
+        </button>
+        <button class="btn" id="exportBtn">
+            <span>💾</span>
+            <span>Export</span>
+        </button>
+        <button class="btn" id="importBtn">
+            <span>📥</span>
+            <span>Import</span>
+        </button>
+    </div>
+
+    <main id="categories"></main>
+</div>
+
+<!-- Add/Edit Link Modal -->
+<div class="modal" id="addModal">
+    <div class="modal-content">
+        <h2 class="modal-header">Add New Link</h2>
+        <form id="addLinkForm">
+            <div class="form-group">
+                <label class="form-label">Name</label>
+                <input type="text" class="form-input" id="linkName" required />
+            </div>
+            <div class="form-group">
+                <label class="form-label">URL</label>
+                <input type="url" class="form-input" id="linkUrl" placeholder="https://..." required />
+            </div>
+            <div class="form-group">
+                <label class="form-label">Category</label>
+                <input type="text" class="form-input" id="linkCategoryInput" list="categoryOptions" placeholder="e.g., Publishing">
+                <datalist id="categoryOptions"></datalist>
+            </div>
+            <div class="modal-actions">
+                <button type="button" class="btn btn-secondary" id="cancelAddBtn">Cancel</button>
+                <button type="submit" class="btn btn-primary">Save Link</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Settings Modal -->
+<div class="modal" id="settingsModal">
+    <div class="modal-content">
+        <h2 class="modal-header">Settings</h2>
+        <div class="form-group">
+            <label class="form-label">Primary Background</label>
+            <input type="color" class="color-picker" id="bgColorPrimary" />
+        </div>
+        <div class="form-group">
+            <label class="form-label">Secondary Background</label>
+            <input type="color" class="color-picker" id="bgColorSecondary" />
+        </div>
+        <div class="form-group">
+            <label class="form-label">Accent Color</label>
+            <input type="color" class="color-picker" id="accentColor" />
+        </div>
+        <div class="modal-actions">
+            <button type="button" class="btn btn-secondary" id="resetThemeBtn">Reset Theme</button>
+            <button type="button" class="btn btn-danger" id="resetStatsBtn">Reset Link Stats</button>
+            <button type="button" class="btn btn-primary" id="closeSettingsBtn">Done</button>
+        </div>
+    </div>
+</div>
+
+<!-- Analytics Modal -->
+<div class="modal" id="analyticsModal">
+    <div class="modal-content">
+        <h2 class="modal-header">Usage Analytics</h2>
+        <div id="analyticsContent">
+            <!-- Analytics data will be injected here by JS -->
+        </div>
+        <div class="modal-actions">
+            <button type="button" class="btn btn-primary" id="closeAnalyticsBtn">Close</button>
+        </div>
+    </div>
+</div>
+
+<!-- Confirmation Modal -->
+<div class="modal" id="confirmModal">
+    <div class="modal-content">
+        <h2 class="modal-header" id="confirmTitle">Are you sure?</h2>
+        <p id="confirmMessage">This action cannot be undone.</p>
+        <div class="modal-actions">
+            <button type="button" class="btn btn-secondary" id="confirmCancelBtn">Cancel</button>
+            <button type="button" class="btn btn-danger" id="confirmOkBtn">Confirm</button>
+        </div>
+    </div>
+</div>
+
+<!-- Alert Modal -->
+<div class="modal" id="alertModal">
+    <div class="modal-content">
+        <h2 class="modal-header" id="alertTitle">Notification</h2>
+        <p id="alertMessage"></p>
+        <div class="modal-actions">
+            <button type="button" class="btn btn-primary" id="alertOkBtn">OK</button>
+        </div>
+    </div>
+</div>
+
+
+<!-- Hidden input for logo upload -->
+<input type="file" id="logoUpload" accept="image/*" hidden>
+
+<!-- CDN for SortableJS (Drag-and-Drop library) -->
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+<!-- Main Application Logic -->
+<script src="script.js"></script>
+</body>
+</html>
+
